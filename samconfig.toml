@@ -1,0 +1,34 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "my-service-dev"
+resolve_s3 = true
+s3_prefix = "my-service-dev"
+region = "ap-northeast-3"
+capabilities = ["CAPABILITY_IAM"]
+parameter_overrides = [
+	"env=\"dev\"",
+]
+image_repositories = []
+
+[dev.deploy.parameters]
+stack_name = "my-service-dev"
+resolve_s3 = true
+s3_prefix = "my-service-dev"
+region = "ap-northeast-3"
+capabilities = ["CAPABILITY_IAM"]
+parameter_overrides = [
+	"env=\"dev\"",
+]
+image_repositories = []
+
+[prod.deploy.parameters]
+stack_name = "my-service-prod"
+resolve_s3 = true
+s3_prefix = "my-service-prod"
+region = "ap-northeast-3"
+capabilities = ["CAPABILITY_IAM"]
+parameter_overrides = [
+	"env=\"prod\"",
+]
+image_repositories = []

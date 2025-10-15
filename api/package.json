@@ -1,0 +1,17 @@
+{
+  "name": "service-gateway",
+  "description": "Lambda Function",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "author": "Dependahub",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.155",
+    "ava": "^6.4.1",
+    "xo": "^1.2.3"
+  }
+}

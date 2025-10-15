@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Microservice
+  
+Parameters:
+  env:
+    Type: String
+    Default: dev
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    Architectures:
+      - arm64
+    Timeout: 900
+    MemorySize: 512
+    Environment:
+        Variables:
+          ENV: !Ref env
+          REGION: !Ref "AWS::Region"
+
+Resources:
+  ServiceGateway:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}"
+      Description: Service Gateway Function
+      CodeUri: api/
+      Handler: src/index.handler
+      Policies:
+        - AWSLambdaBasicExecutionRole

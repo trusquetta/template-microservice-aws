@@ -1,0 +1,24 @@
+{
+  "name": "service-sdk",
+  "description": "Service SDK",
+  "version": "1.0.0",
+  "type": "module",
+  "types": "@types/index.d.ts",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "xo && ava",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Dependahub",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "ava": "^6.4.1",
+    "typescript": "^5.9.3",
+    "xo": "^1.2.3"
+  },
+  "dependencies": {
+    "@dependahub/aws-lambda": "^1.0.0"
+  }
+}

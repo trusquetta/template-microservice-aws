@@ -1,0 +1,48 @@
+{
+  "name": "@trusquetta/template-microservice-aws",
+  "version": "1.0.0",
+  "description": "AWS用マイクロサービステンプレート",
+  "workspaces": [
+    "api",
+    "sdk"
+  ],
+  "type": "module",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "devDependencies": {
+    "ava": "^6.4.1",
+    "esprima-next": "^6.0.3",
+    "xo": "^0.60.0"
+  },
+  "xo": {
+    "ignores": [
+      "**/.aws-sam/**",
+      "**/@types/**"
+    ],
+    "rules": {
+      "capitalized-comments": "off",
+      "unicorn/prevent-abbreviations": [
+        "error",
+        {
+          "replacements": {
+            "env": false,
+            "dev": false,
+            "prod": false,
+            "docs": false
+          }
+        }
+      ]
+    }
+  },
+  "author": "Dependahub",
+  "license": "MIT",
+  "homepage": "https://github.com/dependahub/template-microservice-aws#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dependahub/template-microservice-aws.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dependahub/template-microservice-aws/issues"
+  }
+}
