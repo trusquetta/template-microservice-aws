@@ -1,5 +1,5 @@
 {
-  "name": "@trusquetta/template-microservice-aws",
+  "name": "template-microservice-aws",
   "version": "1.0.0",
   "description": "AWS用マイクロサービステンプレート",
   "workspaces": [
@@ -8,7 +8,9 @@
   ],
   "type": "module",
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "build:sdk": "node ./__scripts__/build-sdk/index.js",
+    "format": "xo --fix"
   },
   "devDependencies": {
     "ava": "^6.4.1",
