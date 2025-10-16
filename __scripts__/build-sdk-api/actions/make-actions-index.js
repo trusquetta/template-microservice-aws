@@ -1,16 +1,16 @@
 import fs from 'node:fs/promises';
 import {kekabToCamel} from '../utils/text-transform.js';
-import {sdkPath} from '../../../config.js';
+import {sdkApiPath} from '../../../config.js';
 
-const actionPath = `${sdkPath}/src/utils/api/actions`;
-const indexJs = `${sdkPath}/src/utils/api/index.js`;
+const actionsPath = `${sdkApiPath}/actions`;
+const indexJs = `${actionsPath}/index.js`;
 
 /**
- * serviceClientActionPath 以下の各アクションをまとめてエクスポートする index.js を生成
+ * ${sdkApiPath}/actions 以下の各アクションをまとめてエクスポートする index.js を生成
  * @return {Promise<string>} 生成したコード
  */
-export async function makeSdkActionsIndex() {
-	const dirents = await fs.readdir(actionPath, {withFileTypes: true});
+export async function makeActionsIndex() {
+	const dirents = await fs.readdir(actionsPath, {withFileTypes: true});
 	const actions = dirents
 		.filter(d =>
 			d.isFile()
@@ -23,7 +23,7 @@ export async function makeSdkActionsIndex() {
 			functionName: kekabToCamel(d.name.replace('.js', '')),
 		}));
 
-	const content = actions.map(a => `export * from './actions/${a.fileName}';`).join('\n') + '\n';
+	const content = actions.map(a => `export * from './${a.fileName}';`).join('\n') + '\n';
 
 	await fs.writeFile(indexJs, content);
 

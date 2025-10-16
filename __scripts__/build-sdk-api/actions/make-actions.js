@@ -1,23 +1,21 @@
 import fs from 'node:fs/promises';
-import {sdkPath, apiPath} from '../../../config.js';
+import {apiPath, sdkApiPath} from '../../../config.js';
 import {makeSkelton} from './make-skelton.js';
 
 const serviceActionPath = `${apiPath}/src/actions`;
-const serviceClientActionPath = `${sdkPath}/src/utils/api/actions`;
+const sdkApiActionsPath = `${sdkApiPath}/actions`;
 const imports = 'import {serviceGateway} from \'../../service-gateway.js\';\n\n';
 const overrideMarker = '@OVERRIDE_ME@';
 
 /**
- * serviceClientActionPath 以下に serviceActionPath から各アクションを生成します
+ * sdkApiActionsPath 以下に serviceActionPath から各アクションを生成します
  * @return {Promise<void>}
  */
-export async function makeSdkActions() {
+export async function makeActions() {
 	const actionDirents = await fs.readdir(serviceActionPath, {withFileTypes: true});
 	const actionDirectories = actionDirents
 		.filter(dirent => dirent.isDirectory())
 		.map(dirent => `${serviceActionPath}/${dirent.name}`);
-
-	await fs.mkdir(serviceClientActionPath, {recursive: true});
 
 	for (const actionDirectory of actionDirectories) {
 		const actionDirectoryName = actionDirectory.split('/').pop();
@@ -36,6 +34,6 @@ export async function makeSdkActions() {
 		let sdkCode = imports + skeltonCode.replace(overrideMarker, sdkImplementation);
 		sdkCode = sdkCode.replaceAll('../../types', '../types');
 		// eslint-disable-next-line no-await-in-loop
-		await fs.writeFile(`${serviceClientActionPath}/${actionDirectoryName}.js`, sdkCode);
+		await fs.writeFile(`${sdkApiActionsPath}/${actionDirectoryName}.js`, sdkCode);
 	}
 }

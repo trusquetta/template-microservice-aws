@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import {sdkPath, apiPath} from '../../../config.js';
+import {sdkApiPath, apiPath} from '../../../config.js';
 
 export async function copyTypes() {
 	const dirrents = await fs.readdir(`${apiPath}/src`, {withFileTypes: true});
@@ -9,15 +9,15 @@ export async function copyTypes() {
 	if (isTypesJs) {
 		await fs.copyFile(
 			`${apiPath}/src/types.js`,
-			`${sdkPath}/src/types.js`,
+			`${sdkApiPath}/types.js`,
 		);
 	}
 
 	if (isTypesDirectory) {
-		await fs.rm(`${sdkPath}/src/types`, {recursive: true, force: true});
+		await fs.rm(`${sdkApiPath}/types`, {recursive: true, force: true});
 		await fs.cp(
 			`${apiPath}/src/types`,
-			`${sdkPath}/src/types`,
+			`${sdkApiPath}/types`,
 			{recursive: true},
 		);
 	}

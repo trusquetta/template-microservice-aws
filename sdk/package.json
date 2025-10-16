@@ -6,8 +6,8 @@
   "types": "@types/index.d.ts",
   "main": "src/index.js",
   "scripts": {
-    "test": "xo && ava",
-    "build": "tsc"
+    "build": "node scripts/build/index.js && rm -rf @types && tsc",
+    "test": "xo && ava"
   },
   "keywords": [],
   "author": "Dependahub",
