@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "test": "xo && ava",
-    "build:sdk": "node ./__scripts__/build-sdk/index.js",
+    "build:sdk": "node ./__scripts__/build-sdk-api/index.js",
     "format": "xo --fix"
   },
   "devDependencies": {

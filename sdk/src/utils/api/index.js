@@ -1,1 +1,6 @@
-export * from './actions/ping.js';
+import * as actions from './actions/index.js';
+
+export const api = {
+	...actions,
+};
+export default api;
